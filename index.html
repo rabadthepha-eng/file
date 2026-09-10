@@ -1,546 +1,426 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>ระบบตรวจสอบถังดับเพลิง</title>
 
-<link rel="preconnect"
-      href="https://fonts.googleapis.com">
-
-<link rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
-* {
-  box-sizing: border-box;
+*{
+  box-sizing:border-box;
 }
 
-body {
-  margin: 0;
-  font-family: 'Sarabun', sans-serif;
-  background: #f3f6f9;
-  color: #263238;
+body{
+  margin:0;
+  font-family:'Sarabun',sans-serif;
+  background:#f3f6f9;
+  color:#263238;
 }
 
-/* =========================
-   LOGIN
-========================= */
+/* HEADER */
 
-.login-page {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(
-    135deg,
-    #b71c1c,
-    #e53935,
-    #ff7043
-  );
-  padding: 20px;
+.header{
+  background:linear-gradient(135deg,#b71c1c,#e53935);
+  color:white;
+  padding:16px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
 }
 
-.login-card {
-  width: 100%;
-  max-width: 420px;
-  background: white;
-  border-radius: 24px;
-  padding: 35px;
-  box-shadow: 0 20px 50px rgba(0,0,0,.25);
+.header-title{
+  font-size:22px;
+  font-weight:700;
 }
 
-.login-icon {
-  width: 85px;
-  height: 85px;
-  margin: auto;
-  border-radius: 50%;
-  background: #ffebee;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 45px;
+.header-subtitle{
+  font-size:13px;
+  opacity:.9;
 }
 
-.login-title {
-  text-align: center;
-  margin: 20px 0 5px;
-  font-size: 25px;
-  font-weight: 700;
+/* NAV */
+
+.nav{
+  background:white;
+  border-bottom:1px solid #e0e0e0;
+  display:flex;
+  gap:5px;
+  padding:8px 15px;
+  overflow-x:auto;
 }
 
-.login-subtitle {
-  text-align: center;
-  color: #78909c;
-  margin-bottom: 25px;
+.nav button{
+  background:transparent;
+  color:#455a64;
+  white-space:nowrap;
 }
 
-.login-error {
-  display: none;
-  background: #ffebee;
-  color: #c62828;
-  padding: 12px;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  text-align: center;
+.nav button.active{
+  background:#ffebee;
+  color:#c62828;
+  font-weight:700;
 }
 
-/* =========================
-   FORM
-========================= */
+/* CONTENT */
 
-.form-group {
-  margin-bottom: 15px;
+.container{
+  max-width:1400px;
+  margin:auto;
+  padding:20px;
 }
 
-label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+.page-title{
+  font-size:24px;
+  font-weight:700;
+  margin-bottom:18px;
+}
+
+/* CARD */
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.card{
+  background:white;
+  border-radius:16px;
+  padding:20px;
+  box-shadow:0 3px 12px rgba(0,0,0,.07);
+}
+
+.card-label{
+  color:#78909c;
+  font-size:14px;
+}
+
+.card-number{
+  font-size:34px;
+  font-weight:700;
+  margin-top:5px;
+}
+
+.card-total{
+  border-left:5px solid #455a64;
+}
+
+.card-normal{
+  border-left:5px solid #2e7d32;
+}
+
+.card-repair{
+  border-left:5px solid #ef6c00;
+}
+
+.card-fail{
+  border-left:5px solid #c62828;
+}
+
+/* PANEL */
+
+.panel{
+  background:white;
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:0 3px 12px rgba(0,0,0,.07);
+}
+
+.panel-title{
+  font-size:19px;
+  font-weight:700;
+  margin-bottom:15px;
+}
+
+/* FORM */
+
+.form-group{
+  margin-bottom:15px;
+}
+
+label{
+  display:block;
+  margin-bottom:6px;
+  font-weight:600;
 }
 
 input,
-select {
-  width: 100%;
-  padding: 11px 13px;
-  border: 1px solid #cfd8dc;
-  border-radius: 10px;
-  font-family: inherit;
-  font-size: 15px;
-  background: white;
+select{
+  width:100%;
+  padding:11px 13px;
+  border:1px solid #cfd8dc;
+  border-radius:10px;
+  font-family:inherit;
+  font-size:15px;
+  background:white;
 }
 
 input:focus,
-select:focus {
-  outline: none;
-  border-color: #e53935;
-  box-shadow: 0 0 0 3px rgba(229,57,53,.12);
+select:focus{
+  outline:none;
+  border-color:#e53935;
+  box-shadow:0 0 0 3px rgba(229,57,53,.12);
 }
 
-/* =========================
-   BUTTON
-========================= */
+/* GRID */
 
-button {
-  border: none;
-  border-radius: 10px;
-  padding: 10px 16px;
-  font-family: inherit;
-  font-size: 15px;
-  cursor: pointer;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
 }
 
-.btn-primary {
-  background: #d32f2f;
-  color: white;
+.grid-4{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
 }
 
-.btn-primary:hover {
-  background: #b71c1c;
+/* BUTTON */
+
+button{
+  border:none;
+  border-radius:10px;
+  padding:10px 16px;
+  font-family:inherit;
+  font-size:15px;
+  cursor:pointer;
 }
 
-.btn-success {
-  background: #2e7d32;
-  color: white;
+.btn-primary{
+  background:#d32f2f;
+  color:white;
 }
 
-.btn-warning {
-  background: #ef6c00;
-  color: white;
+.btn-primary:hover{
+  background:#b71c1c;
 }
 
-.btn-danger {
-  background: #c62828;
-  color: white;
+.btn-success{
+  background:#2e7d32;
+  color:white;
 }
 
-.btn-secondary {
-  background: #607d8b;
-  color: white;
+.btn-warning{
+  background:#ef6c00;
+  color:white;
 }
 
-.btn-block {
-  width: 100%;
+.btn-danger{
+  background:#c62828;
+  color:white;
 }
 
-/* =========================
-   APP
-========================= */
-
-.app {
-  display: none;
-  min-height: 100vh;
+.btn-secondary{
+  background:#607d8b;
+  color:white;
 }
 
-.header {
-  background: linear-gradient(
-    135deg,
-    #b71c1c,
-    #e53935
-  );
-  color: white;
-  padding: 16px 22px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 15px;
+.actions{
+  display:flex;
+  gap:5px;
+  flex-wrap:wrap;
 }
 
-.header-title {
-  font-size: 22px;
-  font-weight: 700;
+.btn-small{
+  padding:5px 9px;
+  font-size:13px;
 }
 
-.header-user {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+/* TABLE */
+
+.table-wrap{
+  overflow-x:auto;
 }
 
-.user-badge {
-  background: rgba(255,255,255,.2);
-  padding: 6px 12px;
-  border-radius: 20px;
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:950px;
 }
 
-.logout-btn {
-  background: white;
-  color: #c62828;
-  font-weight: 600;
+th{
+  background:#ffebee;
+  color:#b71c1c;
+  padding:10px;
+  text-align:left;
+  white-space:nowrap;
 }
 
-/* =========================
-   NAV
-========================= */
-
-.nav {
-  background: white;
-  border-bottom: 1px solid #e0e0e0;
-  display: flex;
-  gap: 5px;
-  padding: 8px 15px;
-  overflow-x: auto;
+td{
+  padding:9px 10px;
+  border-bottom:1px solid #eceff1;
 }
 
-.nav button {
-  background: transparent;
-  color: #455a64;
-  white-space: nowrap;
+tr:hover{
+  background:#fafafa;
 }
 
-.nav button.active {
-  background: #ffebee;
-  color: #c62828;
-  font-weight: 700;
+/* STATUS */
+
+.status{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:600;
 }
 
-/* =========================
-   CONTENT
-========================= */
-
-.container {
-  max-width: 1400px;
-  margin: auto;
-  padding: 20px;
+.status-normal{
+  background:#e8f5e9;
+  color:#2e7d32;
 }
 
-.page {
-  display: none;
+.status-repair{
+  background:#fff3e0;
+  color:#ef6c00;
 }
 
-.page.active {
-  display: block;
+.status-fail{
+  background:#ffebee;
+  color:#c62828;
 }
 
-.page-title {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 18px;
+/* LOADING */
+
+.loading{
+  position:fixed;
+  inset:0;
+  background:rgba(255,255,255,.85);
+  z-index:9999;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
 }
 
-/* =========================
-   CARDS
-========================= */
-
-.cards {
-  display: grid;
-  grid-template-columns:
-    repeat(4, 1fr);
-  gap: 15px;
-  margin-bottom: 20px;
+.spinner{
+  width:45px;
+  height:45px;
+  border:5px solid #ffcdd2;
+  border-top-color:#c62828;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
 }
 
-.card {
-  background: white;
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow:
-    0 3px 12px rgba(0,0,0,.07);
-}
-
-.card-label {
-  color: #78909c;
-  font-size: 14px;
-}
-
-.card-number {
-  font-size: 34px;
-  font-weight: 700;
-  margin-top: 5px;
-}
-
-.card-total {
-  border-left: 5px solid #455a64;
-}
-
-.card-normal {
-  border-left: 5px solid #2e7d32;
-}
-
-.card-repair {
-  border-left: 5px solid #ef6c00;
-}
-
-.card-fail {
-  border-left: 5px solid #c62828;
-}
-
-/* =========================
-   PANEL
-========================= */
-
-.panel {
-  background: white;
-  border-radius: 16px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow:
-    0 3px 12px rgba(0,0,0,.07);
-}
-
-.panel-title {
-  font-size: 19px;
-  font-weight: 700;
-  margin-bottom: 15px;
-}
-
-/* =========================
-   GRID
-========================= */
-
-.grid {
-  display: grid;
-  grid-template-columns:
-    repeat(2, 1fr);
-  gap: 15px;
-}
-
-.grid-4 {
-  display: grid;
-  grid-template-columns:
-    repeat(4, 1fr);
-  gap: 12px;
-}
-
-/* =========================
-   TABLE
-========================= */
-
-.table-wrap {
-  overflow-x: auto;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 950px;
-}
-
-th {
-  background: #ffebee;
-  color: #b71c1c;
-  padding: 10px;
-  text-align: left;
-  white-space: nowrap;
-}
-
-td {
-  padding: 9px 10px;
-  border-bottom: 1px solid #eceff1;
-}
-
-tr:hover {
-  background: #fafafa;
-}
-
-/* =========================
-   STATUS
-========================= */
-
-.status {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.status-normal {
-  background: #e8f5e9;
-  color: #2e7d32;
-}
-
-.status-repair {
-  background: #fff3e0;
-  color: #ef6c00;
-}
-
-.status-fail {
-  background: #ffebee;
-  color: #c62828;
-}
-
-/* =========================
-   ACTION
-========================= */
-
-.actions {
-  display: flex;
-  gap: 5px;
-  flex-wrap: wrap;
-}
-
-.btn-small {
-  padding: 5px 9px;
-  font-size: 13px;
-}
-
-/* =========================
-   LOADING
-========================= */
-
-.loading {
-  position: fixed;
-  inset: 0;
-  background: rgba(255,255,255,.85);
-  z-index: 9999;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.spinner {
-  width: 45px;
-  height: 45px;
-  border: 5px solid #ffcdd2;
-  border-top-color: #c62828;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
   }
 }
 
-/* =========================
-   TOAST
-========================= */
+/* TOAST */
 
-.toast {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  background: #263238;
-  color: white;
-  padding: 12px 18px;
-  border-radius: 10px;
-  display: none;
-  z-index: 10000;
+.toast{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  background:#263238;
+  color:white;
+  padding:12px 18px;
+  border-radius:10px;
+  display:none;
+  z-index:10000;
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
-@media(max-width: 900px) {
+@media(max-width:900px){
 
-  .cards {
-    grid-template-columns:
-      repeat(2, 1fr);
+  .cards{
+    grid-template-columns:repeat(2,1fr);
   }
 
-  .grid-4 {
-    grid-template-columns:
-      repeat(2, 1fr);
+  .grid-4{
+    grid-template-columns:repeat(2,1fr);
   }
 
 }
 
-@media(max-width: 600px) {
+@media(max-width:600px){
 
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
+  .header{
+    flex-direction:column;
+    align-items:flex-start;
   }
 
-  .header-user {
-    width: 100%;
-    justify-content: space-between;
+  .container{
+    padding:12px;
   }
 
-  .container {
-    padding: 12px;
+  .cards{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
   }
 
-  .cards {
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+  .card{
+    padding:14px;
   }
 
-  .card {
-    padding: 14px;
-  }
-
-  .card-number {
-    font-size: 28px;
+  .card-number{
+    font-size:28px;
   }
 
   .grid,
-  .grid-4 {
-    grid-template-columns: 1fr;
+  .grid-4{
+    grid-template-columns:1fr;
   }
 
-  .login-card {
-    padding: 25px 20px;
+}
+
+@media print{
+
+  .header,
+  .nav,
+  .panel:first-child,
+  button{
+    display:none !important;
+  }
+
+  body{
+    background:white;
+  }
+
+  .container{
+    max-width:none;
+    padding:0;
+  }
+
+  .page{
+    display:none !important;
+  }
+
+  #page-report{
+    display:block !important;
   }
 
 }
 
 </style>
-
 </head>
 
 <body>
 
-<!-- ==================================================
-     LOADING
-================================================== -->
+<!-- LOADING -->
 
-<div id="loading"
-     class="loading">
+<div id="loading" class="loading">
 
   <div class="spinner"></div>
 
@@ -550,1602 +430,1792 @@ tr:hover {
 
 </div>
 
-<!-- ==================================================
-     LOGIN
-================================================== -->
 
-<div id="loginPage"
-     class="login-page">
+<!-- HEADER -->
 
-  <div class="login-card">
+<header class="header">
 
-    <div class="login-icon">
-      🧯
-    </div>
-
-    <div class="login-title">
-      ระบบตรวจสอบถังดับเพลิง
-    </div>
-
-    <div class="login-subtitle">
-      Fire Extinguisher Inspection System
-    </div>
-
-    <div id="loginError"
-         class="login-error">
-    </div>
-
-    <form id="loginForm">
-
-      <div class="form-group">
-
-        <label>
-          Username
-        </label>
-
-        <input
-          id="username"
-          type="text"
-          autocomplete="username"
-          required
-          placeholder="กรอก Username">
-
-      </div>
-
-      <div class="form-group">
-
-        <label>
-          Password
-        </label>
-
-        <input
-          id="password"
-          type="password"
-          autocomplete="current-password"
-          required
-          placeholder="กรอก Password">
-
-      </div>
-
-      <button
-        class="btn-primary btn-block"
-        type="submit">
-
-        🔐 เข้าสู่ระบบ
-
-      </button>
-
-    </form>
-
-    <div style="
-      margin-top:20px;
-      padding:12px;
-      background:#f5f5f5;
-      border-radius:10px;
-      font-size:13px;
-      color:#607d8b;
-      text-align:center">
-
-      ผู้ดูแลระบบเริ่มต้น<br>
-      <b>admin</b> / <b>1234</b>
-
-    </div>
-
-  </div>
-
-</div>
-
-<!-- ==================================================
-     APP
-================================================== -->
-
-<div id="app"
-     class="app">
-
-  <!-- HEADER -->
-
-  <header class="header">
+  <div>
 
     <div class="header-title">
       🧯 ระบบตรวจสอบถังดับเพลิง
     </div>
 
-    <div class="header-user">
+    <div class="header-subtitle">
+      Fire Extinguisher Inspection System
+    </div>
 
-      <div class="user-badge">
-        👤 <span id="userName"></span>
-        <span id="userRole"></span>
+  </div>
+
+</header>
+
+
+<!-- NAV -->
+
+<nav class="nav">
+
+  <button id="navDashboard"
+          class="active"
+          onclick="showPage('dashboard')">
+
+    📊 Dashboard
+
+  </button>
+
+  <button id="navForm"
+          onclick="showPage('form')">
+
+    📝 บันทึกการตรวจ
+
+  </button>
+
+  <button onclick="showPage('data')">
+
+    📋 ข้อมูลทั้งหมด
+
+  </button>
+
+  <button onclick="showPage('report')">
+
+    📑 รายงาน
+
+  </button>
+
+</nav>
+
+
+<!-- CONTENT -->
+
+<main class="container">
+
+
+<!-- DASHBOARD -->
+
+<section id="page-dashboard"
+         class="page active">
+
+  <div class="page-title">
+    📊 Dashboard
+  </div>
+
+  <div class="panel">
+
+    <div class="panel-title">
+      🔎 ตัวกรอง Dashboard
+    </div>
+
+    <div class="grid-4">
+
+      <div>
+
+        <label>วันที่เริ่มต้น</label>
+
+        <input type="date"
+               id="dashDateFrom"
+               onchange="loadDashboard()">
+
       </div>
 
-      <button
-        class="logout-btn"
-        onclick="doLogout()">
+      <div>
 
-        ออกจากระบบ
+        <label>วันที่สิ้นสุด</label>
+
+        <input type="date"
+               id="dashDateTo"
+               onchange="loadDashboard()">
+
+      </div>
+
+      <div>
+
+        <label>สถานที่</label>
+
+        <select id="dashLocation"
+                onchange="loadDashboard()">
+        </select>
+
+      </div>
+
+      <div>
+
+        <label>สถานะ</label>
+
+        <select id="dashStatus"
+                onchange="loadDashboard()">
+
+          <option value="">ทั้งหมด</option>
+
+          <option value="ปกติ">
+            ปกติ
+          </option>
+
+          <option value="ต้องแก้ไข">
+            ต้องแก้ไข
+          </option>
+
+          <option value="ไม่ผ่าน">
+            ไม่ผ่าน
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="cards">
+
+    <div class="card card-total">
+
+      <div class="card-label">
+        ตรวจทั้งหมด
+      </div>
+
+      <div class="card-number"
+           id="dashTotal">
+        0
+      </div>
+
+    </div>
+
+
+    <div class="card card-normal">
+
+      <div class="card-label">
+        ปกติ
+      </div>
+
+      <div class="card-number"
+           id="dashNormal">
+        0
+      </div>
+
+    </div>
+
+
+    <div class="card card-repair">
+
+      <div class="card-label">
+        ต้องแก้ไข
+      </div>
+
+      <div class="card-number"
+           id="dashRepair">
+        0
+      </div>
+
+    </div>
+
+
+    <div class="card card-fail">
+
+      <div class="card-label">
+        ไม่ผ่าน
+      </div>
+
+      <div class="card-number"
+           id="dashFail">
+        0
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="panel">
+
+    <div class="panel-title">
+      📍 สรุปตามสถานที่
+    </div>
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>สถานที่</th>
+            <th>จำนวน</th>
+          </tr>
+
+        </thead>
+
+        <tbody id="locationSummary">
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FORM -->
+
+<section id="page-form"
+         class="page">
+
+  <div class="page-title">
+    📝 บันทึกการตรวจถังดับเพลิง
+  </div>
+
+  <div class="panel">
+
+    <form id="recordForm">
+
+      <input type="hidden"
+             id="editRow">
+
+      <div class="grid">
+
+
+        <div class="form-group">
+
+          <label>
+            วันที่ตรวจสอบ *
+          </label>
+
+          <input id="recordDate"
+                 type="date"
+                 required>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            สถานที่ *
+          </label>
+
+          <select id="recordLocation"
+                  required>
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            ชนิดถัง *
+          </label>
+
+          <select id="recordType"
+                  required>
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            สภาพของถัง
+          </label>
+
+          <select id="condition">
+
+            <option value="ปกติ">
+              ปกติ
+            </option>
+
+            <option value="ต้องแก้ไข">
+              ต้องแก้ไข
+            </option>
+
+            <option value="ไม่ผ่าน">
+              ไม่ผ่าน
+            </option>
+
+            <option value="ชำรุด">
+              ชำรุด
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            สายฉีด / หัวฉีด
+          </label>
+
+          <select id="hose">
+
+            <option value="ปกติ">
+              ปกติ
+            </option>
+
+            <option value="ต้องแก้ไข">
+              ต้องแก้ไข
+            </option>
+
+            <option value="ไม่ผ่าน">
+              ไม่ผ่าน
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            คันบีบ
+          </label>
+
+          <select id="handle">
+
+            <option value="ปกติ">
+              ปกติ
+            </option>
+
+            <option value="ต้องแก้ไข">
+              ต้องแก้ไข
+            </option>
+
+            <option value="ไม่ผ่าน">
+              ไม่ผ่าน
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            มาตรวัดแรงดัน
+          </label>
+
+          <select id="pressure">
+
+            <option value="ปกติ">
+              ปกติ
+            </option>
+
+            <option value="ต้องแก้ไข">
+              ต้องแก้ไข
+            </option>
+
+            <option value="ไม่ผ่าน">
+              ไม่ผ่าน
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            สิ่งกีดขวาง
+          </label>
+
+          <select id="obstruction">
+
+            <option value="ไม่มี">
+              ไม่มี
+            </option>
+
+            <option value="มี">
+              มี
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            ผู้ตรวจสอบ *
+          </label>
+
+          <input id="inspector"
+                 type="text"
+                 required>
+
+        </div>
+
+      </div>
+
+
+      <div class="actions">
+
+        <button type="submit"
+                class="btn-success">
+
+          💾 บันทึกข้อมูล
+
+        </button>
+
+        <button type="button"
+                class="btn-secondary"
+                onclick="resetForm()">
+
+          ↩️ ล้างข้อมูล
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</section>
+
+
+<!-- DATA -->
+
+<section id="page-data"
+         class="page">
+
+  <div class="page-title">
+    📋 ข้อมูลการตรวจทั้งหมด
+  </div>
+
+
+  <div class="panel">
+
+    <div class="grid-4">
+
+
+      <div>
+
+        <label>ค้นหา</label>
+
+        <input id="dataSearch"
+               placeholder="ค้นหาสถานที่ / ผู้ตรวจสอบ..."
+               oninput="renderDataTable()">
+
+      </div>
+
+
+      <div>
+
+        <label>สถานที่</label>
+
+        <select id="dataLocation"
+                onchange="renderDataTable()">
+        </select>
+
+      </div>
+
+
+      <div>
+
+        <label>ชนิดถัง</label>
+
+        <select id="dataType"
+                onchange="renderDataTable()">
+        </select>
+
+      </div>
+
+
+      <div>
+
+        <label>สถานะ</label>
+
+        <select id="dataStatus"
+                onchange="renderDataTable()">
+
+          <option value="">
+            ทั้งหมด
+          </option>
+
+          <option value="ปกติ">
+            ปกติ
+          </option>
+
+          <option value="ต้องแก้ไข">
+            ต้องแก้ไข
+          </option>
+
+          <option value="ไม่ผ่าน">
+            ไม่ผ่าน
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="panel">
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>วันที่</th>
+            <th>สถานที่</th>
+            <th>ชนิดถัง</th>
+            <th>สภาพถัง</th>
+            <th>สายฉีด</th>
+            <th>คันบีบ</th>
+            <th>แรงดัน</th>
+            <th>สิ่งกีดขวาง</th>
+            <th>ผู้ตรวจ</th>
+            <th>สถานะ</th>
+            <th>จัดการ</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody id="dataTable">
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- REPORT -->
+
+<section id="page-report"
+         class="page">
+
+  <div class="page-title">
+    📑 รายงานผลการตรวจสอบ
+  </div>
+
+
+  <div class="panel">
+
+    <div class="grid-4">
+
+
+      <div>
+
+        <label>วันที่เริ่มต้น</label>
+
+        <input type="date"
+               id="reportDateFrom">
+
+      </div>
+
+
+      <div>
+
+        <label>วันที่สิ้นสุด</label>
+
+        <input type="date"
+               id="reportDateTo">
+
+      </div>
+
+
+      <div>
+
+        <label>สถานที่</label>
+
+        <select id="reportLocation">
+        </select>
+
+      </div>
+
+
+      <div>
+
+        <label>ชนิดถัง</label>
+
+        <select id="reportType">
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <div style="margin-top:15px">
+
+      <button class="btn-primary"
+              onclick="loadReport()">
+
+        🔎 แสดงรายงาน
+
+      </button>
+
+      <button class="btn-secondary"
+              onclick="printReport()">
+
+        🖨️ พิมพ์รายงาน
+
+      </button>
+
+      <button class="btn-success"
+              onclick="exportCSV()">
+
+        📥 CSV
 
       </button>
 
     </div>
 
-  </header>
+  </div>
 
-  <!-- NAV -->
 
-  <nav class="nav">
+  <div class="panel">
 
-    <button
-      id="navDashboard"
-      class="active"
-      onclick="showPage('dashboard')">
+    <div id="reportSummary"
+         style="font-weight:700;margin-bottom:15px">
+    </div>
 
-      📊 Dashboard
+    <div class="table-wrap">
 
-    </button>
+      <table>
 
-    <button
-      id="navForm"
-      onclick="showPage('form')">
+        <thead>
 
-      📝 บันทึกการตรวจ
+          <tr>
 
-    </button>
+            <th>วันที่</th>
+            <th>สถานที่</th>
+            <th>ชนิดถัง</th>
+            <th>ผลตรวจ</th>
+            <th>ผู้ตรวจสอบ</th>
+            <th>สถานะ</th>
 
-    <button
-      onclick="showPage('data')">
+          </tr>
 
-      📋 ข้อมูลทั้งหมด
+        </thead>
 
-    </button>
+        <tbody id="reportTable">
+        </tbody>
 
-    <button
-      onclick="showPage('report')">
+      </table>
 
-      📑 รายงาน
+    </div>
 
-    </button>
+  </div>
 
-    <button
-      id="navUsers"
-      onclick="showPage('users')">
+</section>
 
-      👥 ผู้ใช้งาน
+</main>
 
-    </button>
-
-  </nav>
-
-  <!-- CONTENT -->
-
-  <main class="container">
-
-    <!-- ==============================================
-         DASHBOARD
-    =============================================== -->
-
-    <section id="page-dashboard"
-             class="page active">
-
-      <div class="page-title">
-        📊 Dashboard
-      </div>
-
-      <div class="panel">
-
-        <div class="panel-title">
-          🔎 ตัวกรอง Dashboard
-        </div>
-
-        <div class="grid-4">
-
-          <div>
-            <label>วันที่เริ่มต้น</label>
-            <input type="date"
-                   id="dashDateFrom"
-                   onchange="loadDashboard()">
-          </div>
-
-          <div>
-            <label>วันที่สิ้นสุด</label>
-            <input type="date"
-                   id="dashDateTo"
-                   onchange="loadDashboard()">
-          </div>
-
-          <div>
-            <label>สถานที่</label>
-            <select id="dashLocation"
-                    onchange="loadDashboard()">
-            </select>
-          </div>
-
-          <div>
-            <label>สถานะ</label>
-            <select id="dashStatus"
-                    onchange="loadDashboard()">
-
-              <option value="">
-                ทั้งหมด
-              </option>
-
-              <option value="ปกติ">
-                ปกติ
-              </option>
-
-              <option value="ต้องแก้ไข">
-                ต้องแก้ไข
-              </option>
-
-              <option value="ไม่ผ่าน">
-                ไม่ผ่าน
-              </option>
-
-            </select>
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="cards">
-
-        <div class="card card-total">
-
-          <div class="card-label">
-            ตรวจทั้งหมด
-          </div>
-
-          <div class="card-number"
-               id="dashTotal">
-            0
-          </div>
-
-        </div>
-
-        <div class="card card-normal">
-
-          <div class="card-label">
-            ปกติ
-          </div>
-
-          <div class="card-number"
-               id="dashNormal">
-            0
-          </div>
-
-        </div>
-
-        <div class="card card-repair">
-
-          <div class="card-label">
-            ต้องแก้ไข
-          </div>
-
-          <div class="card-number"
-               id="dashRepair">
-            0
-          </div>
-
-        </div>
-
-        <div class="card card-fail">
-
-          <div class="card-label">
-            ไม่ผ่าน
-          </div>
-
-          <div class="card-number"
-               id="dashFail">
-            0
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="panel">
-
-        <div class="panel-title">
-          📍 สรุปตามสถานที่
-        </div>
-
-        <div class="table-wrap">
-
-          <table>
-
-            <thead>
-              <tr>
-                <th>สถานที่</th>
-                <th>จำนวน</th>
-              </tr>
-            </thead>
-
-            <tbody id="locationSummary">
-            </tbody>
-
-          </table>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- ==============================================
-         FORM
-    =============================================== -->
-
-    <section id="page-form"
-             class="page">
-
-      <div class="page-title">
-        📝 บันทึกการตรวจถังดับเพลิง
-      </div>
-
-      <div class="panel">
-
-        <form id="recordForm">
-
-          <input type="hidden"
-                 id="editRow">
-
-          <div class="grid">
-
-            <div class="form-group">
-
-              <label>
-                วันที่ตรวจสอบ *
-              </label>
-
-              <input
-                id="recordDate"
-                type="date"
-                required>
-
-            </div>
-
-            <div class="form-group">
-
-              <label>
-                สถานที่ *
-              </label>
-
-              <select id="recordLocation"
-                      required>
-              </select>
-
-            </div>
-
-            <div class="form-group">
-
-              <label>
-                ชนิดถัง *
-              </label>
-
-              <select id="recordType"
-                      required>
-              </select>
-
-            </div>
-
-            <div class="form-group">
-
-              <label>
-                สภาพของถัง
-              </label>
-
-              <select id="condition">
-
-                <option value="ปกติ">
-                  ปกติ
-                </option>
-
-                <option value="ต้องแก้ไข">
-                  ต้องแก้ไข
-                </option>
-
-                <option value="ไม่ผ่าน">
-                  ไม่ผ่าน
-                </option>
-
-                <option value="ชำรุด">
-                  ชำรุด
-                </option>
-
-              </select>
-
-            </div>
-
-            <div class="form-group">
-
-              <label>
-                สายฉีด / หัวฉีด
-              </label>
-
-              <select id="hose">
-
-                <option value="ปกติ">
-                  ปกติ
-                </option>
-
-                <option value="ต้องแก้ไข">
-                  ต้องแก้ไข
-                </option>
-
-                <option value="ไม่ผ่าน">
-                  ไม่ผ่าน
-                </option>
-
-              </select>
-
-            </div>
-
-            <div class="form-group">
-
-              <label>
-                คันบีบ
-              </label>
-
-              <select id="handle">
-
-                <option value="ปกติ">
-                  ปกติ
-                </option>
-
-                <option value="ต้องแก้ไข">
-                  ต้องแก้ไข
-                </option>
-
-                <option value="ไม่ผ่าน">
-                  ไม่ผ่าน
-                </option>
-
-              </select>
-
-            </div>
-
-            <div class="form-group">
-
-              <label>
-                มาตรวัดแรงดัน
-              </label>
-
-              <select id="pressure">
-
-                <option value="ปกติ">
-                  ปกติ
-                </option>
-
-                <option value="ต้องแก้ไข">
-                  ต้องแก้ไข
-                </option>
-
-                <option value="ไม่ผ่าน">
-                  ไม่ผ่าน
-                </option>
-
-              </select>
-
-            </div>
-
-            <div class="form-group">
-
-              <label>
-                สิ่งกีดขวาง
-              </label>
-
-              <select id="obstruction">
-
-                <option value="ไม่มี">
-                  ไม่มี
-                </option>
-
-                <option value="มี">
-                  มี
-                </option>
-
-              </select>
-
-            </div>
-
-            <div class="form-group">
-
-              <label>
-                ผู้ตรวจสอบ *
-              </label>
-
-              <input
-                id="inspector"
-                type="text"
-                required>
-
-            </div>
-
-          </div>
-
-          <div class="actions">
-
-            <button
-              type="submit"
-              class="btn-success">
-
-              💾 บันทึกข้อมูล
-
-            </button>
-
-            <button
-              type="button"
-              class="btn-secondary"
-              onclick="resetForm()">
-
-              ↩️ ล้างข้อมูล
-
-            </button>
-
-          </div>
-
-        </form>
-
-      </div>
-
-    </section>
-
-    <!-- ==============================================
-         DATA
-    =============================================== -->
-
-    <section id="page-data"
-             class="page">
-
-      <div class="page-title">
-        📋 ข้อมูลการตรวจทั้งหมด
-      </div>
-
-      <div class="panel">
-
-        <div class="grid-4">
-
-          <div>
-            <label>ค้นหา</label>
-
-            <input
-              id="dataSearch"
-              placeholder="ค้นหาสถานที่ / ผู้ตรวจสอบ..."
-              oninput="renderDataTable()">
-
-          </div>
-
-          <div>
-            <label>สถานที่</label>
-
-            <select id="dataLocation"
-                    onchange="renderDataTable()">
-            </select>
-          </div>
-
-          <div>
-            <label>ชนิดถัง</label>
-
-            <select id="dataType"
-                    onchange="renderDataTable()">
-            </select>
-          </div>
-
-          <div>
-            <label>สถานะ</label>
-
-            <select id="dataStatus"
-                    onchange="renderDataTable()">
-
-              <option value="">
-                ทั้งหมด
-              </option>
-
-              <option value="ปกติ">
-                ปกติ
-              </option>
-
-              <option value="ต้องแก้ไข">
-                ต้องแก้ไข
-              </option>
-
-              <option value="ไม่ผ่าน">
-                ไม่ผ่าน
-              </option>
-
-            </select>
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="panel">
-
-        <div class="table-wrap">
-
-          <table>
-
-            <thead>
-
-              <tr>
-
-                <th>วันที่</th>
-                <th>สถานที่</th>
-                <th>ชนิดถัง</th>
-                <th>สภาพถัง</th>
-                <th>สายฉีด</th>
-                <th>คันบีบ</th>
-                <th>แรงดัน</th>
-                <th>สิ่งกีดขวาง</th>
-                <th>ผู้ตรวจ</th>
-                <th>สถานะ</th>
-                <th>จัดการ</th>
-
-              </tr>
-
-            </thead>
-
-            <tbody id="dataTable">
-            </tbody>
-
-          </table>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- ==============================================
-         REPORT
-    =============================================== -->
-
-    <section id="page-report"
-             class="page">
-
-      <div class="page-title">
-        📑 รายงานผลการตรวจสอบ
-      </div>
-
-      <div class="panel">
-
-        <div class="grid-4">
-
-          <div>
-            <label>วันที่เริ่มต้น</label>
-            <input type="date"
-                   id="reportDateFrom">
-          </div>
-
-          <div>
-            <label>วันที่สิ้นสุด</label>
-            <input type="date"
-                   id="reportDateTo">
-          </div>
-
-          <div>
-            <label>สถานที่</label>
-            <select id="reportLocation">
-            </select>
-          </div>
-
-          <div>
-            <label>ชนิดถัง</label>
-            <select id="reportType">
-            </select>
-          </div>
-
-        </div>
-
-        <div style="margin-top:15px">
-
-          <button
-            class="btn-primary"
-            onclick="loadReport()">
-
-            🔎 แสดงรายงาน
-
-          </button>
-
-          <button
-            class="btn-secondary"
-            onclick="printReport()">
-
-            🖨️ พิมพ์รายงาน
-
-          </button>
-
-          <button
-            class="btn-success"
-            onclick="exportCSV()">
-
-            📥 CSV
-
-          </button>
-
-        </div>
-
-      </div>
-
-      <div class="panel">
-
-        <div id="reportSummary"
-             style="
-             font-weight:700;
-             margin-bottom:15px">
-        </div>
-
-        <div class="table-wrap">
-
-          <table>
-
-            <thead>
-
-              <tr>
-                <th>วันที่</th>
-                <th>สถานที่</th>
-                <th>ชนิดถัง</th>
-                <th>ผลตรวจ</th>
-                <th>ผู้ตรวจสอบ</th>
-                <th>สถานะ</th>
-              </tr>
-
-            </thead>
-
-            <tbody id="reportTable">
-            </tbody>
-
-          </table>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- ==============================================
-         USERS
-    =============================================== -->
-
-    <section id="page-users"
-             class="page">
-
-      <div class="page-title">
-        👥 จัดการผู้ใช้งาน
-      </div>
-
-      <div class="panel">
-
-        <form id="userForm">
-
-          <div class="grid">
-
-            <div>
-
-              <label>
-                Username *
-              </label>
-
-              <input
-                id="userUsername"
-                required>
-
-            </div>
-
-            <div>
-
-              <label>
-                Password
-              </label>
-
-              <input
-                id="userPassword"
-                type="password"
-                placeholder="ผู้ใช้เดิมไม่ต้องกรอก">
-
-            </div>
-
-            <div>
-
-              <label>
-                ชื่อผู้ใช้งาน *
-              </label>
-
-              <input
-                id="userFullName"
-                required>
-
-            </div>
-
-            <div>
-
-              <label>
-                สิทธิ์
-              </label>
-
-              <select id="userRole">
-
-                <option value="admin">
-                  Admin
-                </option>
-
-                <option value="user">
-                  User
-                </option>
-
-                <option value="viewer">
-                  Viewer
-                </option>
-
-              </select>
-
-            </div>
-
-            <div>
-
-              <label>
-                สถานะ
-              </label>
-
-              <select id="userStatus">
-
-                <option value="เปิดใช้งาน">
-                  เปิดใช้งาน
-                </option>
-
-                <option value="ระงับการใช้งาน">
-                  ระงับการใช้งาน
-                </option>
-
-              </select>
-
-            </div>
-
-          </div>
-
-          <div class="actions"
-               style="margin-top:15px">
-
-            <button
-              class="btn-success"
-              type="submit">
-
-              💾 บันทึกผู้ใช้งาน
-
-            </button>
-
-            <button
-              type="button"
-              class="btn-secondary"
-              onclick="resetUserForm()">
-
-              ล้าง
-
-            </button>
-
-          </div>
-
-        </form>
-
-      </div>
-
-      <div class="panel">
-
-        <div class="table-wrap">
-
-          <table>
-
-            <thead>
-
-              <tr>
-                <th>Username</th>
-                <th>ชื่อ</th>
-                <th>สิทธิ์</th>
-                <th>สถานะ</th>
-                <th>จัดการ</th>
-              </tr>
-
-            </thead>
-
-            <tbody id="usersTable">
-            </tbody>
-
-          </table>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-</div>
 
 <div id="toast"
      class="toast">
 </div>
 
+
 <script>
 
-// ======================================================
-// GLOBAL
-// ======================================================
+/* =====================================================
+   CONFIG
+===================================================== */
 
-let TOKEN = '';
-let CURRENT_USER = null;
+const API_URL =
+  "ใส่ Web App URL ของ Apps Script ตรงนี้";
+
+
+/* =====================================================
+   DATA
+===================================================== */
+
 let APP_DATA = [];
 let LOCATIONS = [];
 let TYPES = [];
 let REPORT_DATA = [];
-let USERS = [];
 
-// ======================================================
-// INIT
-// ======================================================
 
-document.addEventListener('DOMContentLoaded', function() {
+/* =====================================================
+   INIT
+===================================================== */
 
-  const token =
-    sessionStorage.getItem('fire_token');
+document.addEventListener(
+  "DOMContentLoaded",
+  function(){
 
-  if (token) {
+    setToday();
+
+    loadInitialData();
+
+  }
+);
+
+
+/* =====================================================
+   API
+===================================================== */
+
+async function api(action,data={}){
+
+  try{
 
     showLoading();
 
-    google.script.run
-      .withSuccessHandler(function(user) {
+    const response =
+      await fetch(API_URL,{
+        method:"POST",
 
-        hideLoading();
+        headers:{
+          "Content-Type":
+            "text/plain;charset=utf-8"
+        },
 
-        if (user) {
+        body:JSON.stringify({
+          action:action,
+          data:data
+        })
 
-          TOKEN = token;
-          CURRENT_USER = user;
+      });
 
-          openApp();
+    const result =
+      await response.json();
 
-        } else {
+    hideLoading();
 
-          sessionStorage.removeItem('fire_token');
-        }
+    if(!result.success){
 
-      })
-      .withFailureHandler(function() {
-
-        hideLoading();
-        sessionStorage.removeItem('fire_token');
-
-      })
-      .checkSession(token);
-
-  }
-
-});
-
-// ======================================================
-// LOGIN
-// ======================================================
-
-document
-  .getElementById('loginForm')
-  .addEventListener('submit', function(e) {
-
-    e.preventDefault();
-
-    const username =
-      document.getElementById('username').value.trim();
-
-    const password =
-      document.getElementById('password').value;
-
-    hideLoginError();
-
-    showLoading();
-
-    google.script.run
-
-      .withSuccessHandler(function(result) {
-
-        hideLoading();
-
-        if (result && result.success) {
-
-          TOKEN = result.token;
-          CURRENT_USER = result.user;
-
-          sessionStorage.setItem(
-            'fire_token',
-            TOKEN
-          );
-
-          openApp();
-
-        }
-
-      })
-
-      .withFailureHandler(function(error) {
-
-        hideLoading();
-
-        showLoginError(
-          error.message || 'เข้าสู่ระบบไม่สำเร็จ'
-        );
-
-      })
-
-      .login(username, password);
-
-  });
-
-// ======================================================
-// OPEN APP
-// ======================================================
-
-function openApp() {
-
-  document.getElementById('loginPage')
-    .style.display = 'none';
-
-  document.getElementById('app')
-    .style.display = 'block';
-
-  document.getElementById('userName')
-    .textContent = CURRENT_USER.name;
-
-  document.getElementById('userRole')
-    .textContent =
-      ' (' + CURRENT_USER.role + ')';
-
-  applyPermissions();
-
-  loadInitialData();
-
-}
-
-// ======================================================
-// PERMISSIONS
-// ======================================================
-
-function applyPermissions() {
-
-  const role = CURRENT_USER.role;
-
-  const formNav =
-    document.getElementById('navForm');
-
-  const usersNav =
-    document.getElementById('navUsers');
-
-  if (role === 'viewer') {
-
-    formNav.style.display = 'none';
-
-  } else {
-
-    formNav.style.display = '';
-
-  }
-
-  if (role !== 'admin') {
-
-    usersNav.style.display = 'none';
-
-  } else {
-
-    usersNav.style.display = '';
-
-  }
-
-}
-
-// ======================================================
-// LOAD INITIAL DATA
-// ======================================================
-
-function loadInitialData() {
-
-  showLoading();
-
-  google.script.run
-
-    .withSuccessHandler(function(result) {
-
-      hideLoading();
-
-      APP_DATA = result.data || [];
-      LOCATIONS = result.locations || [];
-      TYPES = result.types || [];
-
-      fillSelects();
-
-      renderDataTable();
-
-      loadDashboard();
-
-      if (CURRENT_USER.role === 'admin') {
-        loadUsers();
-      }
-
-      resetForm();
-
-    })
-
-    .withFailureHandler(handleError)
-
-    .getInitialData(TOKEN);
-
-}
-
-// ======================================================
-// FILL SELECT
-// ======================================================
-
-function fillSelects() {
-
-  const locationSelects = [
-    'recordLocation',
-    'dashLocation',
-    'dataLocation',
-    'reportLocation'
-  ];
-
-  locationSelects.forEach(function(id) {
-
-    const el =
-      document.getElementById(id);
-
-    if (!el) return;
-
-    const first =
-      id === 'recordLocation'
-        ? '<option value="">-- เลือกสถานที่ --</option>'
-        : '<option value="">ทั้งหมด</option>';
-
-    el.innerHTML = first;
-
-    LOCATIONS.forEach(function(item) {
-
-      const option =
-        document.createElement('option');
-
-      option.value = item;
-      option.textContent = item;
-
-      el.appendChild(option);
-
-    });
-
-  });
-
-  const typeSelects = [
-    'recordType',
-    'dataType',
-    'reportType'
-  ];
-
-  typeSelects.forEach(function(id) {
-
-    const el =
-      document.getElementById(id);
-
-    if (!el) return;
-
-    const first =
-      id === 'recordType'
-        ? '<option value="">-- เลือกชนิดถัง --</option>'
-        : '<option value="">ทั้งหมด</option>';
-
-    el.innerHTML = first;
-
-    TYPES.forEach(function(item) {
-
-      const option =
-        document.createElement('option');
-
-      option.value = item;
-      option.textContent = item;
-
-      el.appendChild(option);
-
-    });
-
-  });
-
-}
-
-// ======================================================
-// PAGE
-// ======================================================
-
-function showPage(page) {
-
-  document
-    .querySelectorAll('.page')
-    .forEach(function(el) {
-
-      el.classList.remove('active');
-
-    });
-
-  const target =
-    document.getElementById(
-      'page-' + page
-    );
-
-  if (target) {
-    target.classList.add('active');
-  }
-
-  document
-    .querySelectorAll('.nav button')
-    .forEach(function(el) {
-
-      el.classList.remove('active');
-
-    });
-
-  if (page === 'dashboard') {
-
-    document
-      .getElementById('navDashboard')
-      .classList.add('active');
-
-    loadDashboard();
-
-  }
-
-  if (page === 'data') {
-    renderDataTable();
-  }
-
-  if (page === 'report') {
-    loadReport();
-  }
-
-  if (page === 'users') {
-    loadUsers();
-  }
-
-}
-
-// ======================================================
-// DASHBOARD
-// ======================================================
-
-function loadDashboard() {
-
-  const filters = {
-
-    dateFrom:
-      document.getElementById('dashDateFrom').value,
-
-    dateTo:
-      document.getElementById('dashDateTo').value,
-
-    location:
-      document.getElementById('dashLocation').value,
-
-    status:
-      document.getElementById('dashStatus').value
-
-  };
-
-  google.script.run
-
-    .withSuccessHandler(function(result) {
-
-      document.getElementById('dashTotal')
-        .textContent = result.total;
-
-      document.getElementById('dashNormal')
-        .textContent = result.normal;
-
-      document.getElementById('dashRepair')
-        .textContent = result.repair;
-
-      document.getElementById('dashFail')
-        .textContent = result.fail;
-
-      const tbody =
-        document.getElementById(
-          'locationSummary'
-        );
-
-      tbody.innerHTML = '';
-
-      Object.keys(result.byLocation)
-        .forEach(function(location) {
-
-          const tr =
-            document.createElement('tr');
-
-          tr.innerHTML = `
-            <td>${escapeHtml(location)}</td>
-            <td><b>${result.byLocation[location]}</b></td>
-          `;
-
-          tbody.appendChild(tr);
-
-        });
-
-    })
-
-    .withFailureHandler(handleError)
-
-    .getDashboard(TOKEN, filters);
-
-}
-
-// ======================================================
-// FORM SUBMIT
-// ======================================================
-
-document
-  .getElementById('recordForm')
-  .addEventListener('submit', function(e) {
-
-    e.preventDefault();
-
-    const record = {
-
-      row:
-        document.getElementById('editRow').value,
-
-      date:
-        document.getElementById('recordDate').value,
-
-      location:
-        document.getElementById('recordLocation').value,
-
-      type:
-        document.getElementById('recordType').value,
-
-      condition:
-        document.getElementById('condition').value,
-
-      hose:
-        document.getElementById('hose').value,
-
-      handle:
-        document.getElementById('handle').value,
-
-      pressure:
-        document.getElementById('pressure').value,
-
-      obstruction:
-        document.getElementById('obstruction').value,
-
-      inspector:
-        document.getElementById('inspector').value
-
-    };
-
-    showLoading();
-
-    const success = function(result) {
-
-      hideLoading();
-
-      showToast(
+      throw new Error(
         result.message ||
-        'บันทึกข้อมูลเรียบร้อย'
+        "เกิดข้อผิดพลาด"
       );
-
-      resetForm();
-
-      loadInitialData();
-
-      showPage('data');
-
-    };
-
-    const failure = function(error) {
-
-      hideLoading();
-
-      handleError(error);
-
-    };
-
-    if (record.row) {
-
-      google.script.run
-        .withSuccessHandler(success)
-        .withFailureHandler(failure)
-        .updateRecord(TOKEN, record);
-
-    } else {
-
-      google.script.run
-        .withSuccessHandler(success)
-        .withFailureHandler(failure)
-        .addRecord(TOKEN, record);
 
     }
 
-  });
+    return result.data;
 
-// ======================================================
-// RESET FORM
-// ======================================================
+  }catch(error){
 
-function resetForm() {
+    hideLoading();
 
-  document.getElementById('recordForm')
+    handleError(error);
+
+    throw error;
+
+  }
+
+}
+
+
+/* =====================================================
+   LOAD INITIAL
+===================================================== */
+
+async function loadInitialData(){
+
+  try{
+
+    const result =
+      await api(
+        "getInitialData"
+      );
+
+    APP_DATA =
+      result.data || [];
+
+    LOCATIONS =
+      result.locations || [];
+
+    TYPES =
+      result.types || [];
+
+    fillSelects();
+
+    renderDataTable();
+
+    loadDashboard();
+
+    resetForm();
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+
+}
+
+
+/* =====================================================
+   SELECT
+===================================================== */
+
+function fillSelects(){
+
+  const locationSelects=[
+    "recordLocation",
+    "dashLocation",
+    "dataLocation",
+    "reportLocation"
+  ];
+
+  locationSelects.forEach(
+    function(id){
+
+      const el =
+        document.getElementById(id);
+
+      if(!el)return;
+
+      const first =
+        id==="recordLocation"
+        ? '<option value="">-- เลือกสถานที่ --</option>'
+        : '<option value="">ทั้งหมด</option>';
+
+      el.innerHTML=first;
+
+      LOCATIONS.forEach(
+        function(item){
+
+          const option =
+            document.createElement(
+              "option"
+            );
+
+          option.value=item;
+          option.textContent=item;
+
+          el.appendChild(option);
+
+        }
+      );
+
+    }
+  );
+
+
+  const typeSelects=[
+    "recordType",
+    "dataType",
+    "reportType"
+  ];
+
+
+  typeSelects.forEach(
+    function(id){
+
+      const el =
+        document.getElementById(id);
+
+      if(!el)return;
+
+      const first =
+        id==="recordType"
+        ? '<option value="">-- เลือกชนิดถัง --</option>'
+        : '<option value="">ทั้งหมด</option>';
+
+      el.innerHTML=first;
+
+      TYPES.forEach(
+        function(item){
+
+          const option =
+            document.createElement(
+              "option"
+            );
+
+          option.value=item;
+          option.textContent=item;
+
+          el.appendChild(option);
+
+        }
+      );
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+function showPage(page){
+
+  document
+    .querySelectorAll(".page")
+    .forEach(
+      el =>
+        el.classList.remove("active")
+    );
+
+
+  const target =
+    document.getElementById(
+      "page-"+page
+    );
+
+  if(target){
+    target.classList.add("active");
+  }
+
+
+  document
+    .querySelectorAll(".nav button")
+    .forEach(
+      el =>
+        el.classList.remove("active")
+    );
+
+
+  const buttons =
+    document.querySelectorAll(
+      ".nav button"
+    );
+
+  const index={
+    dashboard:0,
+    form:1,
+    data:2,
+    report:3
+  };
+
+
+  if(buttons[index[page]]){
+    buttons[index[page]]
+      .classList.add("active");
+  }
+
+
+  if(page==="dashboard"){
+    loadDashboard();
+  }
+
+  if(page==="data"){
+    renderDataTable();
+  }
+
+  if(page==="report"){
+    loadReport();
+  }
+
+}
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+async function loadDashboard(){
+
+  try{
+
+    const filters={
+
+      dateFrom:
+        document.getElementById(
+          "dashDateFrom"
+        ).value,
+
+      dateTo:
+        document.getElementById(
+          "dashDateTo"
+        ).value,
+
+      location:
+        document.getElementById(
+          "dashLocation"
+        ).value,
+
+      status:
+        document.getElementById(
+          "dashStatus"
+        ).value
+
+    };
+
+
+    const result =
+      await api(
+        "getDashboard",
+        filters
+      );
+
+
+    document.getElementById(
+      "dashTotal"
+    ).textContent=result.total;
+
+
+    document.getElementById(
+      "dashNormal"
+    ).textContent=result.normal;
+
+
+    document.getElementById(
+      "dashRepair"
+    ).textContent=result.repair;
+
+
+    document.getElementById(
+      "dashFail"
+    ).textContent=result.fail;
+
+
+    const tbody =
+      document.getElementById(
+        "locationSummary"
+      );
+
+    tbody.innerHTML="";
+
+
+    Object.keys(
+      result.byLocation || {}
+    ).forEach(
+      function(location){
+
+        const tr =
+          document.createElement(
+            "tr"
+          );
+
+        tr.innerHTML=`
+
+          <td>
+            ${escapeHtml(location)}
+          </td>
+
+          <td>
+            <b>
+              ${result.byLocation[location]}
+            </b>
+          </td>
+
+        `;
+
+        tbody.appendChild(tr);
+
+      }
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+document.getElementById(
+  "recordForm"
+).addEventListener(
+  "submit",
+  async function(e){
+
+    e.preventDefault();
+
+
+    const record={
+
+      row:
+        document.getElementById(
+          "editRow"
+        ).value,
+
+      date:
+        document.getElementById(
+          "recordDate"
+        ).value,
+
+      location:
+        document.getElementById(
+          "recordLocation"
+        ).value,
+
+      type:
+        document.getElementById(
+          "recordType"
+        ).value,
+
+      condition:
+        document.getElementById(
+          "condition"
+        ).value,
+
+      hose:
+        document.getElementById(
+          "hose"
+        ).value,
+
+      handle:
+        document.getElementById(
+          "handle"
+        ).value,
+
+      pressure:
+        document.getElementById(
+          "pressure"
+        ).value,
+
+      obstruction:
+        document.getElementById(
+          "obstruction"
+        ).value,
+
+      inspector:
+        document.getElementById(
+          "inspector"
+        ).value
+
+    };
+
+
+    try{
+
+      let result;
+
+
+      if(record.row){
+
+        result =
+          await api(
+            "updateRecord",
+            record
+          );
+
+      }else{
+
+        result =
+          await api(
+            "addRecord",
+            record
+          );
+
+      }
+
+
+      showToast(
+        result.message ||
+        "บันทึกข้อมูลเรียบร้อย"
+      );
+
+
+      resetForm();
+
+      await loadInitialData();
+
+      showPage("data");
+
+
+    }catch(error){
+
+      console.error(error);
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+function resetForm(){
+
+  document
+    .getElementById(
+      "recordForm"
+    )
     .reset();
 
-  document.getElementById('editRow')
-    .value = '';
 
-  document.getElementById('recordDate')
-    .value =
-      new Date()
-        .toISOString()
-        .substring(0,10);
+  document.getElementById(
+    "editRow"
+  ).value="";
 
-  document.getElementById('recordLocation')
-    .value = '';
 
-  document.getElementById('recordType')
-    .value = '';
-
-  document.getElementById('inspector')
-    .value =
-      CURRENT_USER
-        ? CURRENT_USER.name
-        : '';
+  setToday();
 
 }
 
-// ======================================================
-// EDIT
-// ======================================================
 
-function editRecord(row) {
+/* =====================================================
+   TODAY
+===================================================== */
+
+function setToday(){
+
+  const date =
+    new Date();
+
+  const local =
+    new Date(
+      date.getTime() -
+      date.getTimezoneOffset()*60000
+    )
+    .toISOString()
+    .substring(0,10);
+
+
+  document.getElementById(
+    "recordDate"
+  ).value=local;
+
+}
+
+
+/* =====================================================
+   EDIT
+===================================================== */
+
+function editRecord(row){
 
   const item =
-    APP_DATA.find(function(x) {
+    APP_DATA.find(
+      x =>
+        Number(x.row) ===
+        Number(row)
+    );
 
-      return Number(x.row) === Number(row);
 
-    });
-
-  if (!item) {
+  if(!item){
 
     showToast(
-      'ไม่พบข้อมูลที่ต้องการแก้ไข'
+      "ไม่พบข้อมูล"
     );
 
     return;
+
   }
 
-  document.getElementById('editRow')
-    .value = item.row;
 
-  document.getElementById('recordDate')
-    .value = item.date;
+  document.getElementById(
+    "editRow"
+  ).value=item.row;
 
-  document.getElementById('recordLocation')
-    .value = item.location;
 
-  document.getElementById('recordType')
-    .value = item.type;
+  document.getElementById(
+    "recordDate"
+  ).value=item.date;
 
-  document.getElementById('condition')
-    .value = item.condition;
 
-  document.getElementById('hose')
-    .value = item.hose;
+  document.getElementById(
+    "recordLocation"
+  ).value=item.location;
 
-  document.getElementById('handle')
-    .value = item.handle;
 
-  document.getElementById('pressure')
-    .value = item.pressure;
+  document.getElementById(
+    "recordType"
+  ).value=item.type;
 
-  document.getElementById('obstruction')
-    .value = item.obstruction;
 
-  document.getElementById('inspector')
-    .value = item.inspector;
+  document.getElementById(
+    "condition"
+  ).value=item.condition;
 
-  showPage('form');
+
+  document.getElementById(
+    "hose"
+  ).value=item.hose;
+
+
+  document.getElementById(
+    "handle"
+  ).value=item.handle;
+
+
+  document.getElementById(
+    "pressure"
+  ).value=item.pressure;
+
+
+  document.getElementById(
+    "obstruction"
+  ).value=item.obstruction;
+
+
+  document.getElementById(
+    "inspector"
+  ).value=item.inspector;
+
+
+  showPage("form");
 
 }
 
-// ======================================================
-// DELETE
-// ======================================================
 
-function deleteRecord(row) {
+/* =====================================================
+   DELETE
+===================================================== */
 
-  if (CURRENT_USER.role !== 'admin') {
+async function deleteRecord(row){
+
+  if(!confirm(
+    "ยืนยันการลบข้อมูลรายการนี้?"
+  )){
+    return;
+  }
+
+
+  try{
+
+    const result =
+      await api(
+        "deleteRecord",
+        {
+          row:row
+        }
+      );
+
 
     showToast(
-      'เฉพาะ Admin เท่านั้นที่ลบข้อมูลได้'
+      result.message ||
+      "ลบข้อมูลเรียบร้อย"
     );
 
-    return;
+
+    await loadInitialData();
+
+
+  }catch(error){
+
+    console.error(error);
+
   }
-
-  if (!confirm(
-    'ยืนยันการลบข้อมูลรายการนี้?'
-  )) {
-    return;
-  }
-
-  showLoading();
-
-  google.script.run
-
-    .withSuccessHandler(function(result) {
-
-      hideLoading();
-
-      showToast(result.message);
-
-      loadInitialData();
-
-    })
-
-    .withFailureHandler(handleError)
-
-    .deleteRecord(TOKEN, row);
 
 }
 
-// ======================================================
-// DATA TABLE
-// ======================================================
 
-function renderDataTable() {
+/* =====================================================
+   TABLE
+===================================================== */
+
+function renderDataTable(){
 
   const search =
-    document.getElementById('dataSearch')
-      .value
-      .toLowerCase();
+    (
+      document.getElementById(
+        "dataSearch"
+      )?.value || ""
+    ).toLowerCase();
+
 
   const location =
-    document.getElementById('dataLocation')
-      .value;
+    document.getElementById(
+      "dataLocation"
+    )?.value || "";
+
 
   const type =
-    document.getElementById('dataType')
-      .value;
+    document.getElementById(
+      "dataType"
+    )?.value || "";
+
 
   const status =
-    document.getElementById('dataStatus')
-      .value;
+    document.getElementById(
+      "dataStatus"
+    )?.value || "";
+
 
   const data =
-    APP_DATA.filter(function(item) {
+    APP_DATA.filter(
+      function(item){
 
-      if (
-        location &&
-        item.location !== location
-      ) {
-        return false;
+        if(
+          location &&
+          item.location!==location
+        ){
+          return false;
+        }
+
+
+        if(
+          type &&
+          item.type!==type
+        ){
+          return false;
+        }
+
+
+        if(
+          status &&
+          item.status!==status
+        ){
+          return false;
+        }
+
+
+        if(search){
+
+          const text=[
+            item.date,
+            item.location,
+            item.type,
+            item.condition,
+            item.hose,
+            item.handle,
+            item.pressure,
+            item.obstruction,
+            item.inspector,
+            item.status
+          ]
+          .join(" ")
+          .toLowerCase();
+
+
+          if(
+            text.indexOf(search)===-1
+          ){
+            return false;
+          }
+
+        }
+
+
+        return true;
+
       }
+    );
 
-      if (
-        type &&
-        item.type !== type
-      ) {
-        return false;
+
+  const tbody =
+    document.getElementById(
+      "dataTable"
+    );
+
+  tbody.innerHTML="";
+
+
+  if(!data.length){
+
+    tbody.innerHTML=`
+
+      <tr>
+
+        <td colspan="11"
+            style="text-align:center">
+
+          ไม่พบข้อมูล
+
+        </td>
+
+      </tr>
+
+    `;
+
+    return;
+
+  }
+
+
+  data.forEach(
+    function(item){
+
+      const tr =
+        document.createElement(
+          "tr"
+        );
+
+
+      tr.innerHTML=`
+
+        <td>
+          ${escapeHtml(item.date)}
+        </td>
+
+        <td>
+          ${escapeHtml(item.location)}
+        </td>
+
+        <td>
+          ${escapeHtml(item.type)}
+        </td>
+
+        <td>
+          ${escapeHtml(item.condition)}
+        </td>
+
+        <td>
+          ${escapeHtml(item.hose)}
+        </td>
+
+        <td>
+          ${escapeHtml(item.handle)}
+        </td>
+
+        <td>
+          ${escapeHtml(item.pressure)}
+        </td>
+
+        <td>
+          ${escapeHtml(item.obstruction)}
+        </td>
+
+        <td>
+          ${escapeHtml(item.inspector)}
+        </td>
+
+        <td>
+          ${statusBadge(item.status)}
+        </td>
+
+        <td>
+
+          <div class="actions">
+
+            <button
+              class="btn-warning btn-small"
+              onclick="editRecord(${item.row})">
+
+              แก้ไข
+
+            </button>
+
+            <button
+              class="btn-danger btn-small"
+              onclick="deleteRecord(${item.row})">
+
+              ลบ
+
+            </button>
+
+          </div>
+
+        </td>
+
+      `;
+
+
+      tbody.appendChild(tr);
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+function statusBadge(status){
+
+  if(status==="ปกติ"){
+
+    return `
+      <span class="status status-normal">
+        ปกติ
+      </span>
+    `;
+
+  }
+
+
+  if(status==="ต้องแก้ไข"){
+
+    return `
+      <span class="status status-repair">
+        ต้องแก้ไข
+      </span>
+    `;
+
+  }
+
+
+  return `
+    <span class="status status-fail">
+      ไม่ผ่าน
+    </span>
+  `;
+
+}
+
+
+/* =====================================================
+   REPORT
+===================================================== */
+
+async function loadReport(){
+
+  try{
+
+    const filters={
+
+      dateFrom:
+        document.getElementById(
+          "reportDateFrom"
+        ).value,
+
+      dateTo:
+        document.getElementById(
+          "reportDateTo"
+        ).value,
+
+      location:
+        document.getElementById(
+          "reportLocation"
+        ).value,
+
+      type:
+        document.getElementById(
+          "reportType"
+        ).value
+
+    };
+
+
+    const result =
+      await api(
+        "getReport",
+        filters
+      );
+
+
+    REPORT_DATA =
+      result.data || [];
+
+
+    document.getElementById(
+      "reportSummary"
+    ).textContent =
+      "พบข้อมูลทั้งหมด " +
+      result.total +
+      " รายการ";
+
+
+    const tbody =
+      document.getElementById(
+        "reportTable"
+      );
+
+
+    tbody.innerHTML="";
+
+
+    REPORT_DATA.forEach(
+      function(item){
+
+        const tr =
+          document.createElement(
+            "tr"
+          );
+
+
+        tr.innerHTML=`
+
+          <td>
+            ${escapeHtml(item.date)}
+          </td>
+
+          <td>
+            ${escapeHtml(item.location)}
+          </td>
+
+          <td>
+            ${escapeHtml(item.type)}
+          </td>
+
+          <td>
+            ${escapeHtml(item.condition)}
+          </td>
+
+          <td>
+            ${escapeHtml(item.inspector)}
+          </td>
+
+          <td>
+            ${statusBadge(item.status)}
+          </td>
+
+        `;
+
+
+        tbody.appendChild(tr);
+
       }
+    );
 
-      if (
-        status &&
-        item.status !== status
-      ) {
-        return false;
-      }
+  }catch(error){
 
-      if (search) {
+    console.error(error);
 
-        const text = [
+  }
+
+}
+
+
+/* =====================================================
+   PRINT
+===================================================== */
+
+function printReport(){
+
+  window.print();
+
+}
+
+
+/* =====================================================
+   CSV
+===================================================== */
+
+function exportCSV(){
+
+  if(!REPORT_DATA.length){
+
+    showToast(
+      "ไม่มีข้อมูลสำหรับส่งออก"
+    );
+
+    return;
+
+  }
+
+
+  const headers=[
+
+    "วันที่",
+    "สถานที่",
+    "ชนิดถัง",
+    "สภาพถัง",
+    "สายฉีด",
+    "คันบีบ",
+    "มาตรวัดแรงดัน",
+    "สิ่งกีดขวาง",
+    "ผู้ตรวจสอบ",
+    "สถานะ"
+
+  ];
+
+
+  const rows =
+    REPORT_DATA.map(
+      function(item){
+
+        return [
+
           item.date,
           item.location,
           item.type,
@@ -2156,715 +2226,153 @@ function renderDataTable() {
           item.obstruction,
           item.inspector,
           item.status
-        ]
-        .join(' ')
-        .toLowerCase();
 
-        if (
-          text.indexOf(search) === -1
-        ) {
-          return false;
-        }
+        ];
 
       }
-
-      return true;
-
-    });
-
-  const tbody =
-    document.getElementById(
-      'dataTable'
     );
 
-  tbody.innerHTML = '';
-
-  data.forEach(function(item) {
-
-    const tr =
-      document.createElement('tr');
-
-    tr.innerHTML = `
-
-      <td>${escapeHtml(item.date)}</td>
-
-      <td>${escapeHtml(item.location)}</td>
-
-      <td>${escapeHtml(item.type)}</td>
-
-      <td>${escapeHtml(item.condition)}</td>
-
-      <td>${escapeHtml(item.hose)}</td>
-
-      <td>${escapeHtml(item.handle)}</td>
-
-      <td>${escapeHtml(item.pressure)}</td>
-
-      <td>${escapeHtml(item.obstruction)}</td>
-
-      <td>${escapeHtml(item.inspector)}</td>
-
-      <td>
-        ${statusBadge(item.status)}
-      </td>
-
-      <td>
-
-        <div class="actions">
-
-          ${
-            CURRENT_USER.role !== 'viewer'
-            ? `
-              <button
-                class="btn-warning btn-small"
-                onclick="editRecord(${item.row})">
-                แก้ไข
-              </button>
-            `
-            : ''
-          }
-
-          ${
-            CURRENT_USER.role === 'admin'
-            ? `
-              <button
-                class="btn-danger btn-small"
-                onclick="deleteRecord(${item.row})">
-                ลบ
-              </button>
-            `
-            : ''
-          }
-
-        </div>
-
-      </td>
-
-    `;
-
-    tbody.appendChild(tr);
-
-  });
-
-}
-
-// ======================================================
-// STATUS BADGE
-// ======================================================
-
-function statusBadge(status) {
-
-  if (status === 'ปกติ') {
-
-    return `
-      <span class="status status-normal">
-        ปกติ
-      </span>
-    `;
-
-  }
-
-  if (status === 'ต้องแก้ไข') {
-
-    return `
-      <span class="status status-repair">
-        ต้องแก้ไข
-      </span>
-    `;
-
-  }
-
-  return `
-    <span class="status status-fail">
-      ไม่ผ่าน
-    </span>
-  `;
-
-}
-
-// ======================================================
-// REPORT
-// ======================================================
-
-function loadReport() {
-
-  const filters = {
-
-    dateFrom:
-      document.getElementById(
-        'reportDateFrom'
-      ).value,
-
-    dateTo:
-      document.getElementById(
-        'reportDateTo'
-      ).value,
-
-    location:
-      document.getElementById(
-        'reportLocation'
-      ).value,
-
-    type:
-      document.getElementById(
-        'reportType'
-      ).value
-
-  };
-
-  google.script.run
-
-    .withSuccessHandler(function(result) {
-
-      REPORT_DATA =
-        result.data || [];
-
-      document.getElementById(
-        'reportSummary'
-      ).textContent =
-        'พบข้อมูลทั้งหมด ' +
-        result.total +
-        ' รายการ';
-
-      const tbody =
-        document.getElementById(
-          'reportTable'
-        );
-
-      tbody.innerHTML = '';
-
-      REPORT_DATA.forEach(function(item) {
-
-        const tr =
-          document.createElement('tr');
-
-        tr.innerHTML = `
-
-          <td>${escapeHtml(item.date)}</td>
-
-          <td>${escapeHtml(item.location)}</td>
-
-          <td>${escapeHtml(item.type)}</td>
-
-          <td>
-            ${escapeHtml(
-              item.condition
-            )}
-          </td>
-
-          <td>
-            ${escapeHtml(
-              item.inspector
-            )}
-          </td>
-
-          <td>
-            ${statusBadge(item.status)}
-          </td>
-
-        `;
-
-        tbody.appendChild(tr);
-
-      });
-
-    })
-
-    .withFailureHandler(handleError)
-
-    .getReport(TOKEN, filters);
-
-}
-
-// ======================================================
-// PRINT
-// ======================================================
-
-function printReport() {
-
-  window.print();
-
-}
-
-// ======================================================
-// CSV
-// ======================================================
-
-function exportCSV() {
-
-  if (!REPORT_DATA.length) {
-
-    showToast(
-      'ไม่มีข้อมูลสำหรับส่งออก'
-    );
-
-    return;
-  }
-
-  const headers = [
-    'วันที่',
-    'สถานที่',
-    'ชนิดถัง',
-    'สภาพถัง',
-    'สายฉีด',
-    'คันบีบ',
-    'มาตรวัดแรงดัน',
-    'สิ่งกีดขวาง',
-    'ผู้ตรวจสอบ',
-    'สถานะ'
-  ];
-
-  const rows =
-    REPORT_DATA.map(function(item) {
-
-      return [
-
-        item.date,
-        item.location,
-        item.type,
-        item.condition,
-        item.hose,
-        item.handle,
-        item.pressure,
-        item.obstruction,
-        item.inspector,
-        item.status
-
-      ];
-
-    });
 
   let csv =
-    headers.join(',') + '\n';
+    headers.join(",") +
+    "\n";
 
-  rows.forEach(function(row) {
 
-    csv += row.map(function(value) {
+  rows.forEach(
+    function(row){
 
-      return '"' +
-        String(value || '')
-          .replace(/"/g, '""') +
-        '"';
+      csv +=
+        row.map(
+          function(value){
 
-    }).join(',') + '\n';
+            return '"' +
+              String(value || "")
+                .replace(/"/g,'""') +
+              '"';
 
-  });
+          }
+        )
+        .join(",") +
+        "\n";
+
+    }
+  );
+
 
   const blob =
     new Blob(
-      ['\ufeff' + csv],
+      ["\ufeff"+csv],
       {
         type:
-          'text/csv;charset=utf-8;'
+          "text/csv;charset=utf-8;"
       }
     );
+
 
   const url =
     URL.createObjectURL(blob);
 
-  const a =
-    document.createElement('a');
 
-  a.href = url;
+  const a =
+    document.createElement("a");
+
+
+  a.href=url;
 
   a.download =
-    'รายงานตรวจสอบถังดับเพลิง.csv';
+    "รายงานตรวจสอบถังดับเพลิง.csv";
+
+
+  document.body.appendChild(a);
 
   a.click();
+
+  document.body.removeChild(a);
 
   URL.revokeObjectURL(url);
 
 }
 
-// ======================================================
-// USERS
-// ======================================================
 
-function loadUsers() {
+/* =====================================================
+   LOADING
+===================================================== */
 
-  if (
-    !CURRENT_USER ||
-    CURRENT_USER.role !== 'admin'
-  ) {
-    return;
-  }
-
-  google.script.run
-
-    .withSuccessHandler(function(result) {
-
-      USERS = result || [];
-
-      renderUsers();
-
-    })
-
-    .withFailureHandler(handleError)
-
-    .getUsers(TOKEN);
-
-}
-
-// ======================================================
-// USER FORM
-// ======================================================
-
-document
-  .getElementById('userForm')
-  .addEventListener('submit', function(e) {
-
-    e.preventDefault();
-
-    const user = {
-
-      username:
-        document.getElementById(
-          'userUsername'
-        ).value.trim(),
-
-      password:
-        document.getElementById(
-          'userPassword'
-        ).value,
-
-      name:
-        document.getElementById(
-          'userFullName'
-        ).value.trim(),
-
-      role:
-        document.getElementById(
-          'userRole'
-        ).value,
-
-      status:
-        document.getElementById(
-          'userStatus'
-        ).value
-
-    };
-
-    showLoading();
-
-    google.script.run
-
-      .withSuccessHandler(function(result) {
-
-        hideLoading();
-
-        showToast(result.message);
-
-        resetUserForm();
-
-        loadUsers();
-
-      })
-
-      .withFailureHandler(handleError)
-
-      .saveUser(TOKEN, user);
-
-  });
-
-// ======================================================
-// USER TABLE
-// ======================================================
-
-function renderUsers() {
-
-  const tbody =
-    document.getElementById(
-      'usersTable'
-    );
-
-  tbody.innerHTML = '';
-
-  USERS.forEach(function(user) {
-
-    const tr =
-      document.createElement('tr');
-
-    tr.innerHTML = `
-
-      <td>
-        <b>${escapeHtml(
-          user.username
-        )}</b>
-      </td>
-
-      <td>
-        ${escapeHtml(user.name)}
-      </td>
-
-      <td>
-        ${escapeHtml(user.role)}
-      </td>
-
-      <td>
-        ${escapeHtml(user.status)}
-      </td>
-
-      <td>
-
-        <div class="actions">
-
-          <button
-            class="btn-warning btn-small"
-            onclick="editUser('${escapeJs(
-              user.username
-            )}')">
-
-            แก้ไข
-
-          </button>
-
-          <button
-            class="btn-danger btn-small"
-            onclick="removeUser('${escapeJs(
-              user.username
-            )}')">
-
-            ลบ
-
-          </button>
-
-        </div>
-
-      </td>
-
-    `;
-
-    tbody.appendChild(tr);
-
-  });
-
-}
-
-// ======================================================
-// EDIT USER
-// ======================================================
-
-function editUser(username) {
-
-  const user =
-    USERS.find(function(x) {
-
-      return x.username === username;
-
-    });
-
-  if (!user) return;
+function showLoading(){
 
   document.getElementById(
-    'userUsername'
-  ).value = user.username;
+    "loading"
+  ).style.display="flex";
+
+}
+
+
+function hideLoading(){
 
   document.getElementById(
-    'userFullName'
-  ).value = user.name;
-
-  document.getElementById(
-    'userRole'
-  ).value = user.role;
-
-  document.getElementById(
-    'userStatus'
-  ).value = user.status;
-
-  document.getElementById(
-    'userPassword'
-  ).value = '';
+    "loading"
+  ).style.display="none";
 
 }
 
-// ======================================================
-// DELETE USER
-// ======================================================
 
-function removeUser(username) {
+/* =====================================================
+   TOAST
+===================================================== */
 
-  if (!confirm(
-    'ยืนยันการลบผู้ใช้งาน ' +
-    username +
-    ' ?'
-  )) {
-    return;
-  }
-
-  showLoading();
-
-  google.script.run
-
-    .withSuccessHandler(function(result) {
-
-      hideLoading();
-
-      showToast(result.message);
-
-      loadUsers();
-
-    })
-
-    .withFailureHandler(handleError)
-
-    .deleteUser(TOKEN, username);
-
-}
-
-// ======================================================
-// RESET USER FORM
-// ======================================================
-
-function resetUserForm() {
-
-  document.getElementById(
-    'userForm'
-  ).reset();
-
-}
-
-// ======================================================
-// LOGOUT
-// ======================================================
-
-function doLogout() {
-
-  google.script.run
-    .withSuccessHandler(function() {
-
-      sessionStorage.removeItem(
-        'fire_token'
-      );
-
-      TOKEN = '';
-      CURRENT_USER = null;
-
-      location.reload();
-
-    })
-    .logout(TOKEN);
-
-}
-
-// ======================================================
-// ERROR
-// ======================================================
-
-function handleError(error) {
-
-  hideLoading();
-
-  const message =
-    error && error.message
-      ? error.message
-      : 'เกิดข้อผิดพลาด';
-
-  if (message === 'SESSION_EXPIRED') {
-
-    sessionStorage.removeItem(
-      'fire_token'
-    );
-
-    alert(
-      'Session หมดอายุ กรุณาเข้าสู่ระบบใหม่'
-    );
-
-    location.reload();
-
-    return;
-  }
-
-  showToast(message);
-
-}
-
-// ======================================================
-// LOGIN ERROR
-// ======================================================
-
-function showLoginError(message) {
-
-  const el =
-    document.getElementById(
-      'loginError'
-    );
-
-  el.textContent = message;
-  el.style.display = 'block';
-
-}
-
-function hideLoginError() {
-
-  document.getElementById(
-    'loginError'
-  ).style.display = 'none';
-
-}
-
-// ======================================================
-// LOADING
-// ======================================================
-
-function showLoading() {
-
-  document.getElementById(
-    'loading'
-  ).style.display = 'flex';
-
-}
-
-function hideLoading() {
-
-  document.getElementById(
-    'loading'
-  ).style.display = 'none';
-
-}
-
-// ======================================================
-// TOAST
-// ======================================================
-
-function showToast(message) {
+function showToast(message){
 
   const toast =
     document.getElementById(
-      'toast'
+      "toast"
     );
 
-  toast.textContent = message;
 
-  toast.style.display = 'block';
+  toast.textContent=message;
 
-  setTimeout(function() {
+  toast.style.display="block";
 
-    toast.style.display = 'none';
 
-  }, 2500);
+  setTimeout(
+    function(){
 
-}
+      toast.style.display="none";
 
-// ======================================================
-// ESCAPE
-// ======================================================
-
-function escapeHtml(value) {
-
-  return String(value || '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
+    },
+    2500
+  );
 
 }
 
-function escapeJs(value) {
 
-  return String(value || '')
-    .replace(/\\/g, '\\\\')
-    .replace(/'/g, "\\'");
+/* =====================================================
+   ERROR
+===================================================== */
+
+function handleError(error){
+
+  console.error(error);
+
+  showToast(
+    error?.message ||
+    "เกิดข้อผิดพลาด"
+  );
+
+}
+
+
+/* =====================================================
+   ESCAPE
+===================================================== */
+
+function escapeHtml(value){
+
+  return String(value || "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
 
